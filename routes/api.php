@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\IsplateController;
 use App\Http\Controllers\OpcineController;
+use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\EntryController;
 use App\Http\Controllers\UserController;
 /*
@@ -31,6 +32,10 @@ Route::get('/opcine/all', [OpcineController::class, 'index']);
 Route::get('/opcine/{name}', [OpcineController::class, 'getOpcinaByName']);
 Route::get('/opcine/id/{id}', [OpcineController::class, 'getOpcinaById']);
 
+//Auth
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/logout', [AuthController::class, 'logout']);
 
 ///images
 //For adding an image
