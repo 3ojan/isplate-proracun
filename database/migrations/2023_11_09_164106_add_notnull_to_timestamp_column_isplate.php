@@ -14,9 +14,9 @@ class AddNotnullToTimestampColumnIsplate extends Migration
      */
     public function up()
     {
-        Schema::table('isplate', function (Blueprint $table) {
-            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'))->change();
-        });
+        // Schema::table('isplate', function (Blueprint $table) {
+        //     $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'))->change();
+        // });
     }
 
     /**
@@ -26,8 +26,8 @@ class AddNotnullToTimestampColumnIsplate extends Migration
      */
     public function down()
     {
-        Schema::table('timestamp_column_isplate', function (Blueprint $table) {
-            //
-        });
+        // Schema::table('timestamp_column_isplate', function (Blueprint $table) {
+        //     //
+        // });
     }
 }

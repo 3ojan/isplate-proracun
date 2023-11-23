@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
 {
+
     public function login(LoginRequest $request)
     {
         $credentials = $request->validated();
