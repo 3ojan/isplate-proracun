@@ -14,10 +14,8 @@ class ProfileController extends Controller
             'email' => 'required|email|unique:users',
             'organization' => 'required',
             'rkpid' => 'required',
-            // Add other fields as necessary
         ]);
 
-        // Assuming you have a User model
         $profile = User::create($validatedData);
 
         return response()->json($profile, 201);
@@ -30,7 +28,6 @@ class ProfileController extends Controller
             'email' => 'required|email|unique:users,email,'.$id,
             'organization' => 'required',
             'rkpid' => 'required',
-            // Add other fields as necessary
         ]);
 
         $profile = User::find($id);
