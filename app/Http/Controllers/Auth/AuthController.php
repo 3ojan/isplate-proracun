@@ -24,6 +24,7 @@ class AuthController extends Controller
         }
         /** @var User $user */
         $user = Auth::user();
+        Log::info($user);
         $token = $user->createToken('main')->plainTextToken;
         $expiration = config('sanctum.expiration');
 
@@ -33,6 +34,9 @@ class AuthController extends Controller
     }
     public function logout(Request $request)
     {
+        // /** @var User $user */
+        Log::info($request);
+
         $user = $request->user();
         $user->currentAccessToken()->delete();
         return response('', 204);
