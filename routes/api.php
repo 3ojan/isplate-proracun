@@ -8,6 +8,7 @@ use App\Http\Controllers\OpcineController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\EntryController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProfileController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -39,6 +40,19 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 // });
 
+///images
+//For adding an image
+Route::get('/add-image', [App\Http\Controllers\ImageUploadController::class, 'addImage'])->name('images.add');
+//For storing an image
+Route::post('/store-image', [App\Http\Controllers\ImageUploadController::class, 'storeImage']);
+
+
+
+///
+
+
+Route::post('/profile', [ProfileController::class, 'create']);
+Route::put('/profile/{id}', [ProfileController::class, 'update']);
 Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('/logout', [AuthController::class, 'logout']);
