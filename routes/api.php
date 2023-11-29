@@ -33,12 +33,18 @@ Route::get('/opcine/{name}', [OpcineController::class, 'getOpcinaByName']);
 Route::get('/opcine/id/{id}', [OpcineController::class, 'getOpcinaById']);
 
 //Auth
+// Route::group(['middleware' => ['web']], function () {
+// your routes here
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
-Route::post('/logout', [AuthController::class, 'logout']);
+// });
 
-///images
-//For adding an image
-Route::get('/add-image', [App\Http\Controllers\ImageUploadController::class, 'addImage'])->name('images.add');
-//For storing an image
-Route::post('/store-image', [App\Http\Controllers\ImageUploadController::class, 'storeImage']);
+Route::middleware('auth:sanctum')->group(function () {
+
+    Route::post('/logout', [AuthController::class, 'logout']);
+    ///images
+    //For adding an image
+    Route::get('/add-image', [App\Http\Controllers\ImageUploadController::class, 'addImage'])->name('images.add');
+    //For storing an image
+    Route::post('/store-image', [App\Http\Controllers\ImageUploadController::class, 'storeImage']);
+});

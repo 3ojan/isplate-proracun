@@ -26,6 +26,7 @@ class ImageUploadController extends Controller
 			]);
 		}
 
+		Log::info('Showing data: ' . $data);
 		$data->save();
 		return response()->json([
 			"success" => true,
