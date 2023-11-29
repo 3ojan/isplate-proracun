@@ -33,9 +33,12 @@ Route::get('/opcine/{name}', [OpcineController::class, 'getOpcinaByName']);
 Route::get('/opcine/id/{id}', [OpcineController::class, 'getOpcinaById']);
 
 //Auth
+// Route::group(['middleware' => ['web']], function () {
+// your routes here
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/logout', [AuthController::class, 'logout']);
+// });
 
 ///images
 //For adding an image

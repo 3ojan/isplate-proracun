@@ -16,6 +16,8 @@ class AuthController extends Controller
     public function login(LoginRequest $request)
     {
         $credentials = $request->validated();
+        // Log::info($credentials);
+        // $request->session()->put('key', 'value');
 
         if (!Auth::attempt($credentials)) {
             return response(['message' => 'Krivo korsničko ime i/ili lozinka.'], 422);
@@ -23,7 +25,11 @@ class AuthController extends Controller
         /** @var User $user */
         $user = Auth::user();
         $token = $user->createToken('main')->plainTextToken;
-        return response(compact('user', 'token'), 201);
+        $expiration = config('sanctum.expiration');
+
+        // Log::info($request->session()->all());
+
+        return response(compact('user', 'token', 'expiration'), 201);
     }
     public function logout(Request $request)
     {
