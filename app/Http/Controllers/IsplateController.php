@@ -35,17 +35,6 @@ class IsplateController extends Controller
 
     //     return response()->json($results);
     // }
-    public function showYearsOfEnteredData()
-    {
-        $results = DB::table('isplate')->select(
-            DB::raw(
-                'DISTINCT YEAR(STR_TO_DATE(isplate.datum, "%Y-%m-%d")) as godina'
-            )
-        )
-            ->orderBy('godina', 'DESC')
-            ->get();
-        return response()->json($results);
-    }
     public function showEntries($name)
     {
         $opcina =  Opcine::where('url', $name)->get();
@@ -53,7 +42,7 @@ class IsplateController extends Controller
         $year = request('year');
         $keyWord = request('keyword');
 
-        $entriesQuery = $this->getAllEntriesFromOpcinaInYEar($opcina, $year);
+        $entriesQuery = $this->getAllEntriesFromOpcina($opcina, $year);
 
         if (!$year) {
             return response()->json(['error' => 'Unesite godinu za pretraživanje'], 400);
@@ -83,7 +72,7 @@ class IsplateController extends Controller
         return $results;
     }
 
-    private function getAllEntriesFromOpcinaInYEar($opcina, $year)
+    private function getAllEntriesFromOpcina($opcina, $year)
     {
         $results = DB::table('isplate')
             ->join('opcine', 'opcine.rkpid', '=', 'isplate.rkpid')
