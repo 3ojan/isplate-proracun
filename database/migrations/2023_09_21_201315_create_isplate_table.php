@@ -14,10 +14,29 @@ class CreateIsplateTable extends Migration
      */
     public function up()
     {
+
+        Schema::create('opcine', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('rkpid')->unique();
+            $table->string('naziv');
+            $table->string('adresa');
+            $table->string('mjesto')->nullable();
+            $table->string('zupanija')->nullable();
+            $table->string('homepage')->nullable();
+            $table->string('oib', 11)->unique();
+            $table->string('url')->unique();
+            $table->string('grb');
+            $table->string('favico');
+            $table->string('background');
+            $table->text('description');
+            $table->timestamps();
+        });
+
+
         Schema::create('isplate', function (Blueprint $table) {
             $table->id(); // Auto-increment ID column
             $table->unsignedBigInteger('rkpid')->index();
-            $table->foreign('rkpid')->references('rkpid')->on('opcines')->onDelete('cascade');
+            $table->foreign('rkpid')->references('rkpid')->on('opcine')->onDelete('cascade');
             $table->string('naziv')->nullable();
             $table->string('adresa')->nullable();
             $table->string('mjesto')->nullable();

@@ -13,22 +13,25 @@ class CreateOpcinesTable extends Migration
      */
     public function up()
     {
-        Schema::create('opcine', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('rkpid')->unique();
-            $table->string('naziv');
-            $table->string('adresa');
-            $table->string('mjesto')->nullable();
-            $table->string('zupanija')->nullable();
-            $table->string('homepage')->nullable();
-            $table->string('oib', 11)->unique();
-            $table->string('url')->unique();
-            $table->string('grb');
-            $table->string('favico');
-            $table->string('background');
-            $table->text('description');
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('opcine')) {
+
+            Schema::create('opcine', function (Blueprint $table) {
+                $table->id();
+                $table->unsignedBigInteger('rkpid')->unique();
+                $table->string('naziv');
+                $table->string('adresa');
+                $table->string('mjesto')->nullable();
+                $table->string('zupanija')->nullable();
+                $table->string('homepage')->nullable();
+                $table->string('oib', 11)->unique();
+                $table->string('url')->unique();
+                $table->string('grb');
+                $table->string('favico');
+                $table->string('background');
+                $table->text('description');
+                $table->timestamps();
+            });
+        }
     }
 
 
