@@ -34,4 +34,3 @@ class AddTimestampColumnToIsplate extends Migration
         // });
     }
 }
-

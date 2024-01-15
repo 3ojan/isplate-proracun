@@ -42,6 +42,9 @@ class CreateOpcinesTable extends Migration
      */
     public function down()
     {
+        Schema::table('isplate', function (Blueprint $table) {
+            $table->dropForeign(['rkpid']); // Replace 'opcine_id' with the actual foreign key column
+        });
         Schema::dropIfExists('opcine');
     }
 }
