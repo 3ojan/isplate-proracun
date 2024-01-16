@@ -15,9 +15,15 @@ class AddTimestampColumnToIsplate extends Migration
     public function up()
     {
         Schema::table('isplate', function (Blueprint $table) {
-            // Add a new timestamp column to the 'isplate' tabl
-            if (!Schema::hasColumn('isplate', 'created_at')) {
-                $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            // Add a new timestamp column to the 'isplate' table
+            if (Schema::hasColumn('isplate', 'created_at')) {
+                $table->dropColumn('created_at');
+                // $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'))->change();;
+            }
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+
+            if (Schema::hasColumn('isplate', 'updated_at')) {
+                $table->dropColumn('updated_at');
             }
         });
     }
@@ -31,7 +37,9 @@ class AddTimestampColumnToIsplate extends Migration
     {
         Schema::table('isplate', function (Blueprint $table) {
             // Remove the column if the migration is rolled back
-            $table->dropColumn('created_at'); // Replace 'new_column_name' with the actual column name you want to remove
+            if (Schema::hasColumn('isplate', 'created_at')) {
+                $table->dropColumn('created_at');
+            }
         });
     }
 }

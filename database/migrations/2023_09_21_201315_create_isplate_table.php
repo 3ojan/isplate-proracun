@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class CreateIsplateTable extends Migration
 {
@@ -55,7 +56,8 @@ class CreateIsplateTable extends Migration
             $table->unsignedBigInteger('isplatiteljrkp');
             $table->unsignedBigInteger('kategorija')->index();
             $table->text('description')->nullable(); // Assuming descriptions can be longer than a string
-            $table->timestamps(); // Automatically add created_at and updated_at columns
+            // $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            // $table->timestamps(); // Automatically add created_at and updated_at columns
         });
     }
 
