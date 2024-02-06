@@ -20,9 +20,32 @@ class RemoveUnnecessaryColumns extends Migration
         Log::info('--------------------------------------------------------------');
 
         Schema::table('isplate', function (Blueprint $table) {
-            // Add a new timestamp column to the 'isplate' table
+            if (Schema::hasColumn('isplate', 'naziv')) {
+                $table->dropColumn('naziv');
+            }
             if (Schema::hasColumn('isplate', 'adresa')) {
                 $table->dropColumn('adresa');
+            }
+            if (Schema::hasColumn('isplate', 'zupanija')) {
+                $table->dropColumn('zupanija');
+            }
+            if (Schema::hasColumn('isplate', 'homepage')) {
+                $table->dropColumn('homepage');
+            }
+            if (Schema::hasColumn('isplate', 'description')) {
+                $table->dropColumn('description');
+            }
+            if (Schema::hasColumn('isplate', 'url')) {
+                $table->dropColumn('url');
+            }
+            if (Schema::hasColumn('isplate', 'grb')) {
+                $table->dropColumn('grb');
+            }
+            if (Schema::hasColumn('isplate', 'favico')) {
+                $table->dropColumn('favico');
+            }
+            if (Schema::hasColumn('isplate', 'background')) {
+                $table->dropColumn('background');
             }
         });
     }
@@ -34,6 +57,6 @@ class RemoveUnnecessaryColumns extends Migration
      */
     public function down()
     {
-        //
+        //nothing to do
     }
 }

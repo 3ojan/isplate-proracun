@@ -83,7 +83,7 @@ class IsplateController extends Controller
         return $results;
     }
 
-    private function getAllEntriesFromOpcinaInYEar($opcina, $year)
+    private function getAllEntriesFromOpcinaInYear($opcina, $year)
     {
         $results = DB::table('isplate')
             ->join('opcine', 'opcine.rkpid', '=', 'isplate.rkpid')
