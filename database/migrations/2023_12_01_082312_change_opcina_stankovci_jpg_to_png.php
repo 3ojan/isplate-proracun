@@ -4,6 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Artisan;
 
 class ChangeOpcinaStankovciJpgToPng extends Migration
 {
@@ -14,6 +15,10 @@ class ChangeOpcinaStankovciJpgToPng extends Migration
      */
     public function up()
     {
+        // Trigger the seeder
+        Artisan::call('db:seed', [
+            '--class' => 'OpcineTableSeeder',
+        ]);
         DB::table('opcine')->where('grb', 'like', '%.jpg')
             ->orWhere('favico', 'like', '%.jpg')
             ->orWhere('background', 'like', '%.jpg')
