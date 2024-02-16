@@ -35,20 +35,24 @@ class IsplateController extends Controller
 
     //     return response()->json($results);
     // }
-    public function showYearsOfEnteredData()
+    public function showYearsOfEnteredData($name)
     {
-        $results = DB::table('isplate')->select(
-            DB::raw(
-                'DISTINCT YEAR(STR_TO_DATE(isplate.datum, "%Y-%m-%d")) as godina'
+        $opcina = $this->getOpcinaFromName($name);
+        $results = DB::table('isplate')
+            ->join('opcine', 'opcine.rkpid', '=', 'isplate.rkpid')
+            ->where('opcine.rkpid', '=', $opcina[0]->rkpid)
+            ->select(
+                DB::raw(
+                    'DISTINCT YEAR(STR_TO_DATE(isplate.datum, "%Y-%m-%d")) as godina'
+                )
             )
-        )
             ->orderBy('godina', 'DESC')
             ->get();
         return response()->json($results);
     }
     public function showEntries($name)
     {
-        $opcina =  Opcine::where('url', $name)->get();
+        $opcina = $this->getOpcinaFromName($name);
 
         $year = request('year');
         $keyWord = request('keyword');
@@ -83,6 +87,11 @@ class IsplateController extends Controller
         return $results;
     }
 
+    private function getOpcinaFromName($name)
+    {
+        // Log::info('opcina: '  . Opcine::where('url', $name)->get());
+        return Opcine::where('url', $name)->get();
+    }
     private function getAllEntriesFromOpcinaInYear($opcina, $year)
     {
         $results = DB::table('isplate')
@@ -96,6 +105,7 @@ class IsplateController extends Controller
                 ),
             );
 
+        Log::info('results: '  . response()->json($results));
         return $results;
     }
 }
