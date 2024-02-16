@@ -18,10 +18,11 @@ return [
     'paths' => ['api/*', 'sanctum/csrf-cookie'],
 
     //prod
-    // 'allowed_origins' => ['https://test200.plavilink.hr'],
+    // 'allowed_origins' => ['https://isplate.*'],
 
     //local
-    'allowed_origins' => ['http://127.0.0.1:4200'],
+    // 'allowed_origins' => ['http://127.0.0.1:4200'],
+    'allowed_origins' => ['*'],
 
     'allowed_methods' => ['*'],
 
