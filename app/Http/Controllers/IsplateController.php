@@ -50,8 +50,10 @@ class IsplateController extends Controller
             ->get();
         return response()->json($results);
     }
+
     public function showEntries($name)
     {
+        Log::info("stigao");
         $opcina = $this->getOpcinaFromName($name);
 
         $year = request('year');

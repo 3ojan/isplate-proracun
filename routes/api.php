@@ -27,7 +27,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // Route::get('/{name}/transparentnost/{queryParam}', [IsplateController::class, 'queryEntries']);
 
-Route::get('/{name}/transparentnost', [IsplateController::class, 'showEntries']);
+//renamed
+Route::get('/{name}/isplate', [IsplateController::class, 'showEntries']);
+
+// Route::get('/{name}/transparentnost', [IsplateController::class, 'showEntries']);
 Route::get('/{name}/transparentnost/godinePodataka', [IsplateController::class, 'showYearsOfEnteredData']);
 Route::get('/isplate', [IsplateController::class, 'index']);
 Route::get('/opcine/all', [OpcineController::class, 'index']);
