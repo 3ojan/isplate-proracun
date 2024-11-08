@@ -53,7 +53,6 @@ class IsplateController extends Controller
 
     public function showEntries($name)
     {
-        Log::info("stigao");
         $opcina = $this->getOpcinaFromName($name);
 
         $year = request('year');

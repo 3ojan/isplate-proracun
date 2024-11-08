@@ -7,8 +7,12 @@ use App\Http\Controllers\IsplateController;
 use App\Http\Controllers\OpcineController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\EntryController;
+use App\Http\Controllers\PlanoviController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\VodicController;
+use App\Models\Planovi;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -27,15 +31,21 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // Route::get('/{name}/transparentnost/{queryParam}', [IsplateController::class, 'queryEntries']);
 
-//renamed
-Route::get('/{name}/isplate', [IsplateController::class, 'showEntries']);
 
-// Route::get('/{name}/transparentnost', [IsplateController::class, 'showEntries']);
+/////isplate
+Route::get('/{name}/transparentnost', [IsplateController::class, 'showEntries']);
 Route::get('/{name}/transparentnost/godinePodataka', [IsplateController::class, 'showYearsOfEnteredData']);
 Route::get('/isplate', [IsplateController::class, 'index']);
 Route::get('/opcine/all', [OpcineController::class, 'index']);
 Route::get('/opcine/{name}', [OpcineController::class, 'getOpcinaByName']);
 Route::get('/opcine/id/{id}', [OpcineController::class, 'getOpcinaById']);
+
+
+/////Vodic za gradane
+//renamed /{name}/transparentnost
+Route::get('/{name}/isplate', [IsplateController::class, 'showEntries']);
+Route::get('/{rkpid}/planovi', [PlanoviController::class, 'getProracunPlanovi']);
+Route::get('/{proracunplanid}/{vodicsekcija}/vodici', [VodicController::class, 'getProracunVodic']);
 
 //Auth
 // Route::group(['middleware' => ['web']], function () {
