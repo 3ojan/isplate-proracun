@@ -46,6 +46,7 @@ Route::get('/opcine/id/{id}', [OpcineController::class, 'getOpcinaById']);
 Route::get('/{name}/isplate', [IsplateController::class, 'showEntries']);
 Route::get('/{rkpid}/planovi', [PlanoviController::class, 'getProracunPlanovi']);
 Route::get('/{proracunplanid}/{vodicsekcija}/vodici', [VodicController::class, 'getProracunVodic']);
+Route::get('/{proracunplanid}/{vodicsekcija}/vodiciPodaci', [VodicController::class, 'getProracunVodicPodaci']);
 
 //Auth
 // Route::group(['middleware' => ['web']], function () {
