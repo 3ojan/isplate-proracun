@@ -11,7 +11,10 @@ use App\Http\Controllers\PlanoviController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\VodicController;
+use App\Http\Controllers\PdfController;
+use App\Http\Controllers\ImageController;
 use App\Models\Planovi;
+use Illuminate\Support\Facades\Log;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,6 +51,8 @@ Route::get('/{rkpid}/planovi', [PlanoviController::class, 'getProracunPlanovi'])
 Route::get('/{proracunplanid}/{vodicsekcija}/vodici', [VodicController::class, 'getProracunVodic']);
 Route::get('/{proracunplanid}/{vodicsekcija}/vodiciPodaci', [VodicController::class, 'getProracunVodicPodaci']);
 
+Route::post('/generate-pdf', [PdfController::class, 'generatePdf']);
+Route::get('/image/{filename}', [ImageController::class, 'getImage']);
 //Auth
 // Route::group(['middleware' => ['web']], function () {
 // your routes here
