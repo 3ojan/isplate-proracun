@@ -15,10 +15,12 @@ class VodicController extends Controller
     {
         return Vodic::where('proracunplanid', $proracunplanid)->where('vodicsekcija', $vodicSekcija)->get();
     }
-    function getProracunVodicPodaci($proracunplanid, $vodicSekcija)
+
+    function getProracunVodicPodaci($rkpid, $proracunplanid, $vodicSekcija)
     {
-        return VodicPodaci::where('proracunplanid', $proracunplanid)->where('vodicsekcija', $vodicSekcija)->get();
+        return VodicPodaci::where('rkpid', $rkpid)->where('proracunplanid', $proracunplanid)->where('vodicsekcija', $vodicSekcija)->get();
     }
+
     function getProracunVodicAktinostList($rkpid, $proracunplanid)
     {
         return VodicAktivnost::where('rkpid', $rkpid)->where('proracunplanid', $proracunplanid)->get();
