@@ -48,7 +48,7 @@ Route::get('/opcine/id/{id}', [OpcineController::class, 'getOpcinaById']);
 //renamed /{name}/transparentnost
 Route::get('/{name}/isplate', [IsplateController::class, 'showEntries']);
 Route::get('/{rkpid}/planovi', [PlanoviController::class, 'getProracunPlanovi']);
-Route::get('/{proracunplanid}/{vodicsekcija}/vodici', [VodicController::class, 'getProracunVodic']);
+Route::get('/{rkpid}/{proracunplanid}/{vodicsekcija}/vodici', [VodicController::class, 'getProracunVodic']);
 Route::get('/{rkpid}/{proracunplanid}/{vodicsekcija}/vodiciPodaci', [VodicController::class, 'getProracunVodicPodaci']);
 Route::get('/{rkpid}/{proracunplanid}/vodiciAktivnostList', [VodicController::class, 'getProracunVodicAktinostList']);
 

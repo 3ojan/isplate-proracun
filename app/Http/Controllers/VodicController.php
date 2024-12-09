@@ -11,9 +11,9 @@ use Illuminate\Support\Facades\Log;
 class VodicController extends Controller
 {
     //
-    function getProracunVodic($proracunplanid, $vodicSekcija)
+    function getProracunVodic($rkpid, $proracunplanid, $vodicSekcija)
     {
-        return Vodic::where('proracunplanid', $proracunplanid)->where('vodicsekcija', $vodicSekcija)->get();
+        return Vodic::where('rkpid', $rkpid)->where('proracunplanid', $proracunplanid)->where('vodicsekcija', $vodicSekcija)->get();
     }
 
     function getProracunVodicPodaci($rkpid, $proracunplanid, $vodicSekcija)
